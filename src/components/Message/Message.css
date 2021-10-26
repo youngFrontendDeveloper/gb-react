@@ -1,0 +1,8 @@
+.text {
+  width: fit-content;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  font-size: 25px;
+  color: dimgray;
+  border-bottom: 1px solid dimgray;
+}

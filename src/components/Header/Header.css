@@ -1,0 +1,6 @@
+.header_block {
+  padding: 15px;
+  color: lightyellow;
+  background: linear-gradient(180deg, #52cc08, #022503);
+  border-bottom: 1px solid #ccc;
+}

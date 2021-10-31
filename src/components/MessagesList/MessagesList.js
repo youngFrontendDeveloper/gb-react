@@ -1,9 +1,10 @@
 import "./MessagesList.css";
 
-function MessagesList({ createComponent }) {
+function MessagesList({ createComponent, messageBot }) {
   return (
    <>
      { createComponent }
+     {messageBot}
    </>
   );
 }

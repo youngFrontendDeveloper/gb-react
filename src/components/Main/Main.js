@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MessagesList from "../MessagesList/MessagesList";
 
 import "./Main.css";
+import MessageFromBot from "../MessageFromBot/MessageFromBot";
 
 function Main() {
   const [ userName, setUserName ] = useState( "" );
@@ -11,44 +12,27 @@ function Main() {
   const messageRef = useRef( "" );
 
 
-  const changeInput = () => {
-    setUserName( nameRef.current.value );
-    setUserMessage( messageRef.current.value );
+  const changeAuthor = (event) => {
+    setUserName( event.target.value );
+  };
+
+  const changeMessage = (event) => {
+    setUserMessage( event.target.value );
   };
 
   const addMessageInArr = (event) => {
     event.preventDefault();
     setMessages( [ ...messages, {
-      name: nameRef.current.value,
-      message: messageRef.current.value
+      name: userName,
+      message: userMessage
     } ] );
+
     nameRef.current.value = "";
     messageRef.current.value = "";
     nameRef.current.focus();
+    console.log(messages);
+    // console.log(messages[ messages.length - 1 ][" name" ]);
   };
-
-  // useEffect( () => {
-  //   return (
-  //     <div>
-  //       <p>Автор: Бот </p>
-  //       <p>Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не
-  //         употребляйте матерных и грубых выражений</p>
-  //     </div>
-  //   );
-  //   console.log("ok");
-  // }, [ messages ] );
-
-  // const messageBot =()=> {
-  //   return (
-  //     <li>
-  //       <p>Автор: Бот </p>
-  //       <p>Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не
-  //         употребляйте матерных и грубых выражений</p>
-  //     </li>
-  //   );
-  // }
-
-  // const isEmpty = () => messages.length ? true : false;
 
   const createComponent = messages.map( (item, index) => {
     return (
@@ -60,18 +44,27 @@ function Main() {
   } );
 
 
+  useEffect( () => {
+    console.log( "ok" );
+    // messageBot();
+  }, [ messages ] );
+
+  // const messageBot = () => messages[ messages.length - 1 ][" name" ] !== "bot" ? true : false;
+
+  // const isEmpty = () => messages.length ? true : false;
+
   return (
     <main className="main_block">
       <h1>This is a Main page</h1>
       <div className="messages">
-        <MessagesList createComponent={ createComponent }/>
-
+        <MessagesList createComponent={ createComponent } />
+        <MessageFromBot/>
       </div>
       <form action="#" className="form">
-        <input type="text" ref={ nameRef } onChange={ changeInput } placeholder="Your name"
+        <input type="text" ref={ nameRef } onChange={ changeAuthor } placeholder="Your name"
                className="form__item form__name"/>
-        <textarea ref={ messageRef } onChange={ changeInput } placeholder="Your message"
-                  className="form__item form__message" />
+        <textarea ref={ messageRef } onChange={ changeMessage } placeholder="Your message"
+                  className="form__item form__message"/>
         <button onClick={ addMessageInArr } className="form__btn">Submit</button>
       </form>
     </main>

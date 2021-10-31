@@ -9,6 +9,7 @@ function App() {
 
   const headerText = "This is a my Header";
   const footerText = "This is a footer";
+
   return (
     <div className="app">
       <Header header={ headerText }/>

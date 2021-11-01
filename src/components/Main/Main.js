@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MessagesList from "../MessagesList/MessagesList";
 
 import "./Main.css";
-import MessageFromBot from "../MessageFromBot/MessageFromBot";
+
 
 function Main() {
   const [ userName, setUserName ] = useState( "" );
@@ -30,42 +30,39 @@ function Main() {
     nameRef.current.value = "";
     messageRef.current.value = "";
     nameRef.current.focus();
-    console.log(messages);
-    // console.log(messages[ messages.length - 1 ][" name" ]);
   };
 
-  const createComponent = messages.map( (item, index) => {
-    return (
-      <div className="messages__item" key={ index }>
-        <p className="messages__author">Автор: <span className="messages__author-name">{ item.name }</span></p>
-        <p className="messages__text">{ item.message }</p>
-      </div>
-    );
-  } );
-
+  const addMessageFromBot = () => {
+    let itemArr = messages[ messages.length - 1 ];
+    if( itemArr.name !== "Bot" && messages.length !== 0 ) {
+      setMessages( [ ...messages, {
+        name: "Bot",
+        message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не\n" +
+          "        употребляйте матерных и грубых выражений"
+      } ] );
+    }
+  };
 
   useEffect( () => {
-    console.log( "ok" );
-    // messageBot();
-  }, [ messages ] );
-
-  // const messageBot = () => messages[ messages.length - 1 ][" name" ] !== "bot" ? true : false;
-
-  // const isEmpty = () => messages.length ? true : false;
+      if( messages.length !== 0 ) {
+        addMessageFromBot();
+      }
+    }
+  );
 
   return (
     <main className="main_block">
       <h1>This is a Main page</h1>
       <div className="messages">
-        <MessagesList createComponent={ createComponent } />
-        <MessageFromBot/>
+        <MessagesList messages={ messages }/>
       </div>
       <form action="#" className="form">
         <input type="text" ref={ nameRef } onChange={ changeAuthor } placeholder="Your name"
                className="form__item form__name"/>
         <textarea ref={ messageRef } onChange={ changeMessage } placeholder="Your message"
                   className="form__item form__message"/>
-        <button onClick={ addMessageInArr } className="form__btn">Submit</button>
+        <button onClick={ addMessageInArr } className="form__btn">Add</button>
+
       </form>
     </main>
   );

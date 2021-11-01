@@ -1,35 +1,3 @@
 .main_block {
   flex: 1 0 auto;
 }
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 70%;
-  max-width: 400px;
-  margin: 20px auto;
-}
-
-.form__item {
-  width: 100%;
-  margin-bottom: 5px;
-  padding: 7px;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
-
-/*.form__name {*/
-/*  width: 100%;*/
-/*  margin-bottom: 5px;*/
-/*  padding: 7px;*/
-/*  box-sizing: border-box;*/
-/*}*/
-
-.form__message {
-  height: 100px;
-}
-
-.form__btn {
-  border-radius: 4px;
-}

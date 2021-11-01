@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import MessagesList from "../MessagesList/MessagesList";
-
+import Form from "../Form/Form";
 import "./Main.css";
-
 
 function Main() {
   const [ userName, setUserName ] = useState( "" );
@@ -37,8 +36,7 @@ function Main() {
     if( itemArr.name !== "Bot" && messages.length !== 0 ) {
       setMessages( [ ...messages, {
         name: "Bot",
-        message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не\n" +
-          "        употребляйте матерных и грубых выражений"
+        message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не употребляйте матерных и грубых выражений"
       } ] );
     }
   };
@@ -56,14 +54,11 @@ function Main() {
       <div className="messages">
         <MessagesList messages={ messages }/>
       </div>
-      <form action="#" className="form">
-        <input type="text" ref={ nameRef } onChange={ changeAuthor } placeholder="Your name"
-               className="form__item form__name"/>
-        <textarea ref={ messageRef } onChange={ changeMessage } placeholder="Your message"
-                  className="form__item form__message"/>
-        <button onClick={ addMessageInArr } className="form__btn">Add</button>
-
-      </form>
+      <Form changeAuthor={ changeAuthor }
+            changeMessage={ changeMessage }
+            addMessageInArr={ addMessageInArr }
+            nameRef={ nameRef }
+            messageRef={ messageRef }/>
     </main>
   );
 }

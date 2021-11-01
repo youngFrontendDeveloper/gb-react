@@ -42,9 +42,11 @@ function Main() {
   };
 
   useEffect( () => {
-      if( messages.length !== 0 ) {
-        addMessageFromBot();
-      }
+     setTimeout(()=>{
+       if( messages.length !== 0 ) {
+         addMessageFromBot();
+       }
+     }, 1500)
     }
   );
 

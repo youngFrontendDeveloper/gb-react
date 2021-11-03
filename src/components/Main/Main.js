@@ -6,7 +6,7 @@ import "./Main.css";
 
 function Main() {
   const [ messages, setMessages ] = useState( [] );
-  // const parentRef = useRef();
+  const parentRef = useRef();
 
   const addMessageInArr = useCallback( (newMessage) => {
     setMessages( (prevMessages) => [ ...prevMessages, newMessage ] );
@@ -28,12 +28,12 @@ function Main() {
 
   return (
     <main className="main_block"
-          // ref={ parentRef }
+          ref={ parentRef }
     >
       <h1>This is a Main page</h1>
-      <div className="messages">
+      {/*<div className="messages">*/}
         <MessagesList messages={ messages }/>
-      </div>
+      {/*</div>*/}
       <FormMess
         sendMessage={ addMessageInArr }
       />

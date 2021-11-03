@@ -1,20 +1,6 @@
-.messages {
-  padding-left: 0;
-  /*border: 1px solid #cccccc;*/
-  list-style: none;
-}
 
 .messages__item {
-  margin-bottom: 10px;
-  padding: 20px;
   background-color: rgba(193, 213, 232, 0.38);
-}
-
-.messages__author {
-  margin: 0;
-  padding: 10px;
-  /*padding-bottom: 20px;*/
-  text-align: left;
 }
 
 .messages__author-name {
@@ -22,9 +8,9 @@
 }
 
 .messages__text {
-  margin: 0;
-  padding: 10px;
-  text-align: left;
+  /*margin: 0;*/
+  /*padding: 10px;*/
+  /*text-align: left;*/
   color: #706f6f;
   background-color: rgba(196, 208, 222, 0.27);
 }

@@ -5,6 +5,8 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
 
   const headerText = "This is a my Header";

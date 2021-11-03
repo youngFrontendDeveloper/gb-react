@@ -1,66 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import MessagesList from "../MessagesList/MessagesList";
-import Form from "../Form/Form";
+import FormMess from "../Form/Form";
 import "./Main.css";
 
+
 function Main() {
-  const [ userName, setUserName ] = useState( "" );
-  const [ userMessage, setUserMessage ] = useState( "" );
   const [ messages, setMessages ] = useState( [] );
-  const nameRef = useRef( "" );
-  const messageRef = useRef( "" );
+  // const parentRef = useRef();
 
+  const addMessageInArr = useCallback( (newMessage) => {
+    setMessages( (prevMessages) => [ ...prevMessages, newMessage ] );
+  }, [] );
 
-  const changeAuthor = (event) => {
-    setUserName( event.target.value );
-  };
-
-  const changeMessage = (event) => {
-    setUserMessage( event.target.value );
-  };
-
-  const addMessageInArr = (event) => {
-    event.preventDefault();
-    setMessages( [ ...messages, {
-      name: userName,
-      message: userMessage
-    } ] );
-
-    nameRef.current.value = "";
-    messageRef.current.value = "";
-    nameRef.current.focus();
-  };
-
-  const addMessageFromBot = () => {
-    let itemArr = messages[ messages.length - 1 ];
-    if( itemArr.name !== "Bot" && messages.length !== 0 ) {
-      setMessages( [ ...messages, {
-        name: "Bot",
-        message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не употребляйте матерных и грубых выражений"
-      } ] );
-    }
-  };
 
   useEffect( () => {
-     setTimeout(()=>{
-       if( messages.length !== 0 ) {
-         addMessageFromBot();
-       }
-     }, 1500)
+    if( messages.length && messages[ messages.length - 1 ].name !== "Bot" ) {
+      const timeout = setTimeout( () => {
+          addMessageInArr( {
+            name: "Bot",
+            message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не употребляйте матерных и грубых выражений"
+          } );
+        }, 1500
+      );
+      return () => clearTimeout( timeout );
     }
-  );
+  }, [ addMessageInArr, messages ] );
 
   return (
-    <main className="main_block">
+    <main className="main_block"
+          // ref={ parentRef }
+    >
       <h1>This is a Main page</h1>
       <div className="messages">
         <MessagesList messages={ messages }/>
       </div>
-      <Form changeAuthor={ changeAuthor }
-            changeMessage={ changeMessage }
-            addMessageInArr={ addMessageInArr }
-            nameRef={ nameRef }
-            messageRef={ messageRef }/>
+      <FormMess
+        sendMessage={ addMessageInArr }
+      />
     </main>
   );
 }

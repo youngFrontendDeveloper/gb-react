@@ -1,12 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MessagesList from "../MessagesList/MessagesList";
 import FormMess from "../Form/Form";
+
 import "./Main.css";
+import uuid from "react-uuid";
 
 
 function Main() {
   const [ messages, setMessages ] = useState( [] );
-  const parentRef = useRef();
+  // const parentRef = useRef();
 
   const addMessageInArr = useCallback( (newMessage) => {
     setMessages( (prevMessages) => [ ...prevMessages, newMessage ] );
@@ -17,6 +19,7 @@ function Main() {
     if( messages.length && messages[ messages.length - 1 ].name !== "Bot" ) {
       const timeout = setTimeout( () => {
           addMessageInArr( {
+            id: uuid(),
             name: "Bot",
             message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не употребляйте матерных и грубых выражений"
           } );
@@ -28,12 +31,10 @@ function Main() {
 
   return (
     <main className="main_block"
-          ref={ parentRef }
+          // ref={ parentRef }
     >
       <h1>This is a Main page</h1>
-      {/*<div className="messages">*/}
-        <MessagesList messages={ messages }/>
-      {/*</div>*/}
+      <MessagesList messages={ messages }/>
       <FormMess
         sendMessage={ addMessageInArr }
       />

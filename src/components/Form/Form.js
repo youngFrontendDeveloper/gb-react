@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import "./Form.css";
+import uuid from "react-uuid";
 
 function FormMess({ sendMessage }) {
   const [ userName, setUserName ] = useState( "" );
@@ -22,6 +23,7 @@ function FormMess({ sendMessage }) {
     e.preventDefault();
     sendMessage(
       {
+        id: uuid(),
         name: userName,
         message: userMessage
       } );

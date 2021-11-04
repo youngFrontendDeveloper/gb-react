@@ -8,9 +8,9 @@ function FormMess({ sendMessage }) {
   const [ userMessage, setUserMessage ] = useState( "" );
   const nameRef = useRef();
 
-  useEffect(()=>{
+  useEffect( () => {
     nameRef.current?.focus();
-  }, [])
+  }, [] );
   const changeAuthor = (event) => {
     setUserName( event.target.value );
   };
@@ -36,7 +36,7 @@ function FormMess({ sendMessage }) {
 
   return (
     <Row>
-      <Col className="mx-auto my-1 " xs={ 10 } md={ 8 } lg={ 6 }>
+      <Col className="mx-auto my-1 " md={ 9 } lg={ 7 }>
         <Form
           onSubmit={ handleSubmit }>
           <Form.Control ref={ nameRef }

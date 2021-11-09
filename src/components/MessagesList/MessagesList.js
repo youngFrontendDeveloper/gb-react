@@ -6,10 +6,10 @@ import { ListGroup } from "react-bootstrap";
 
 function MessagesList({ messages }) {
   return (
-    <ListGroup>
+    <ListGroup >
         { messages.map( (item) => {
           return (
-            <MessagesListItem item={item}/>
+            <MessagesListItem item={item} key={ item.id }/>
           );
         } ) }
 

@@ -3,7 +3,7 @@ import { ListGroup } from "react-bootstrap";
 
 function MessagesListItem({ item }) {
   return (
-    <ListGroup.Item className="p-2 mb-2 messages__item" key={ item.id }>
+    <ListGroup.Item className="p-2 mb-2 messages__item" >
       <p className="m-0 p-2 text-start ">
         Автор: <span className="messages__author-name">{ item.name }</span>
       </p>

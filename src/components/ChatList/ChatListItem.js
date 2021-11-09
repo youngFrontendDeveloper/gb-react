@@ -1,9 +1,9 @@
 import { ListGroup } from "react-bootstrap";
 
-function ChatListItem({ name }) {
+function ChatListItem({ name, handleClick }) {
   return (
     <>
-      <ListGroup.Item>{ name }</ListGroup.Item>
+      <ListGroup.Item onClick={handleClick}>{ name }</ListGroup.Item>
     </>
   );
 }

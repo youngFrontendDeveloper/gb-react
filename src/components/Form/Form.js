@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import "./Form.css";
 import uuid from "react-uuid";
+import { ChatListData } from "../../constants/ChatListData";
 
 function FormMess({ sendMessage }) {
   const [ userName, setUserName ] = useState( "" );
-  const [ userMessage, setUserMessage ] = useState( "" );
+  const [ userText, setUserText ] = useState( "" );
   const nameRef = useRef();  // Для фокуса на инпуте
   const messageRef = useRef();
 
@@ -24,7 +25,7 @@ function FormMess({ sendMessage }) {
   const changeMessage = (e) => {
     e.target.classList.remove( "warning" ); // убираю класс warning
     e.target.placeholder = "Your message";
-    setUserMessage( e.target.value );
+    setUserText( e.target.value );
   };
 
   // Убираю класс warning у поля, если на нем поставлен фокус
@@ -36,20 +37,20 @@ function FormMess({ sendMessage }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if( userName && userMessage ) {  // проверка заполнения полей
+    if( userName && userText ) {  // проверка заполнения полей
       sendMessage(
         {
           id: uuid(),
-          name: userName,
-          message: userMessage
+          author: userName,
+          text: userText
         } );
 
       setUserName( "" );
 
-      setUserMessage( "" );
+      setUserText( "" );
       nameRef.current?.focus();
 
-    } else if( !userName && !userMessage ) {
+    } else if( !userName && !userText ) {
       nameRef.current?.focus();
       nameRef.current.classList.add( "warning" );
       nameRef.current.placeholder = "Заполните это поле!";
@@ -59,7 +60,7 @@ function FormMess({ sendMessage }) {
       nameRef.current?.focus();
       nameRef.current.classList.add( "warning" );
       nameRef.current.placeholder = "Заполните это поле!";
-    } else if( !userMessage ) {
+    } else if( !userText ) {
       messageRef.current?.focus();
       messageRef.current.classList.add( "warning" );
       messageRef.current.placeholder = "Заполните это поле!";
@@ -82,7 +83,7 @@ function FormMess({ sendMessage }) {
           <Form.Control ref={ messageRef }
                         onChange={ changeMessage }
                         onFocus={ handleFocus }
-                        value={ userMessage }
+                        value={ userText }
                         placeholder="Your message"
                         className="mb-2 p-2 w-100 form__message"
                         as="textarea"/>

@@ -1,21 +1,23 @@
-import { ListGroup } from "react-bootstrap";
-import ChatListItem from "./ChatListItem";
-
+import React from "react";
+import { Nav, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ChatList({ data }) {
 
-  const handleClick = () => {
-    console.log( "click" );
-  };
   return (
     <>
-      <ListGroup>
-        { data.map( item => {
+      <Row className="mb-3"><h4 className="mb-3">Выберите чат:</h4></Row>
+      <Nav className="flex-column" defaultActiveKey="/chats">
+        {
+          data.map( item => {
           return (
-            <ChatListItem name={ item.name } key={ item.id } handleClick={ handleClick }/>
+
+            <Nav.Item key={ item.id } >
+              <Nav.Link as={ Link } to={ `${ item.path }` } eventKey={ item.name } >{ item.name }</Nav.Link>
+            </Nav.Item>
           );
         } ) }
-      </ListGroup>
+      </Nav>
     </>
   );
 }

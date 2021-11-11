@@ -3,11 +3,10 @@
 /.idea
 /.pnp
 .pnp.js
+Data.txt
 
 
 /coverage
-
-
 /build
 
 

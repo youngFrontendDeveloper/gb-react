@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -9,12 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
 
-  const headerText = "This is a my Header";
+
   const footerText = "This is a footer";
 
   return (
     <div className="app">
-      <Header header={ headerText }/>
+      <Header />
       <Main/>
       <Footer footer={ footerText }/>
     </div>

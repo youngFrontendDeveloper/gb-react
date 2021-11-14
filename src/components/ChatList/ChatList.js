@@ -1,23 +1,51 @@
-import React from "react";
-import { Nav, Row } from "react-bootstrap";
+import React, { useCallback, useState } from "react";
+import { Button, Form, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AddChat from "../AddChat/AddChat";
 
-function ChatList({ data }) {
+
+const chatsListData = [
+  {
+    name: "Чат о новых фильмах",
+    id: "films",
+  },
+  {
+    name: "Чат о детях",
+    id: "children",
+  },
+  {
+    name: "Чат о машинах",
+    id: "cars",
+  },
+  {
+    name: "Чат о здоровье",
+    id: "health",
+  }
+];
+function ChatList() {
+  const [ chatsList, setChatsList ] = useState( [ chatsListData ] );
+
+  const addNewCatInChatsList = useCallback( (newChat) => {
+    setChatsList( (prevChatList) => (
+      [ ...prevChatList, newChat ]
+    ) );
+  },[chatsList] );
+
 
   return (
     <>
-      <Row className="mb-3"><h4 className="mb-3">Выберите чат:</h4></Row>
-      <Nav className="flex-column" defaultActiveKey="/chats">
+      <Row className="mb-2"><h4>Выберите чат:</h4></Row>
+      <Nav className="flex-column mb-3">
         {
-          data.map( item => {
-          return (
-
-            <Nav.Item key={ item.id } >
-              <Nav.Link as={ Link } to={ `${ item.path }` } eventKey={ item.name } >{ item.name }</Nav.Link>
-            </Nav.Item>
-          );
-        } ) }
+          chatsListData.map( item => {
+            return (
+              <Nav.Item key={ item.id }>
+                <Nav.Link as={ Link } to={ `/chats/${ item.id }` } eventKey={ item.id }>{ item.name }</Nav.Link>
+              </Nav.Item>
+            );
+          } ) }
       </Nav>
+      <AddChat className="add-chat "  addNewCatInChatsList={ addNewCatInChatsList }/>
     </>
   );
 }

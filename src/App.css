@@ -5,3 +5,23 @@
   text-align: center;
   color: darkslategray;
 }
+
+
+.warning {
+  border:2px solid #d50a0a !important;
+  font-weight: bold;
+}
+
+input.warning::placeholder,
+textarea.warning::placeholder{
+  color: #d50a0a !important;
+}
+
+input.warning::-webkit-input-placeholder,
+textarea.warning::-webkit-input-placeholder {
+  color: #d50a0a !important;
+}
+input.warning:-moz-placeholder,
+textarea.warning:-moz-placeholder {
+  color: #d50a0a !important;
+}

@@ -5,7 +5,10 @@ import Home from "../Home/Home";
 import Profile from "../Profile/Profile";
 import Error from "../Error/Error";
 import "./Main.css";
-import MessagesList from "../MessagesList/MessagesList";
+// import MessagesList from "../MessagesList/MessagesList";
+import ChatItem from "../Chats/ChatItem";
+import { ChatListData } from "../../constants/ChatListData";
+import ChatList from "../ChatList/ChatList";
 
 function Main() {
 
@@ -14,8 +17,10 @@ function Main() {
       <Routes>
         <Route exact path="/" element={ <Home/> }/>
         <Route path="/profile" element={ <Profile/> }/>
-        <Route exact path="/chats/*" element={ <Chats/> }/>
-        {/*<Route exact path="chats/:chatId" element={ <MessagesList/> }/>*/}
+        <Route path="chats">
+          <Route index element={ <ChatList/> }/>
+          <Route exact path=":chatId" element={ <Chats/> }/>
+        </Route>
         <Route path="*" element={ <Error/> }/>
       </Routes>
 

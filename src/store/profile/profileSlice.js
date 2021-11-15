@@ -9,14 +9,14 @@ const profileSlice = createSlice( {
     toggleShowName: (state) => {
       state.showName = !state.showName;
     },
-    changeName: (state, action )=>{
+    changeName: (state, action) => {
       const {userName} = action.payload;
 
     }
   }
 } );
 
-export const { toggleShowName,changeName } = profileSlice.actions;
+export const { toggleShowName, changeName } = profileSlice.actions;
 export const selectShowName = state => state.profileReducer.showName;
 export const selectName = state => state.profileReducer.userName;
 

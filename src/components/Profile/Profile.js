@@ -1,24 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useState } from "react";
-import { changeName, selectShowName, toggleShowName } from "../../store/profile/profileSlice";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { changeName, toggleCheckbox } from "../../store/profile/actions";
+import { selectName } from "../../store/profile/selectors";
 
 
 function Profile() {
-  const [ newUserName, setNewUserName ] = useState( "Default" );
-  const showName = useSelector( selectShowName );
+  const name = useSelector( state=>state.profile.name );
+  const checkboxValue = useSelector( (state) => state.profile.checkbox );
+  console.log(checkboxValue);
+  const [ value, setValue ] = useState( name );
   const dispatch = useDispatch();
 
-  const handleShowName = useCallback( () => {
-    dispatch( toggleShowName() );
-  }, [ dispatch ] );
 
-  const handleAddName = (e) => {
-    setNewUserName( e.target.value );
-    dispatch( changeName( {
-      userName: newUserName
-    } ) );
+  const handleChange =useCallback( () => {
+    dispatch( toggleCheckbox );
+  },[dispatch]);
+
+  const handleChangeName = (e) => {
+    setValue( e.target.value );
   };
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    dispatch( changeName(value) );
+    setValue("")
+  },[dispatch, value]);
+
 
   return (
     <Container>
@@ -26,22 +34,25 @@ function Profile() {
         <h1>This is a Profile page</h1>
       </Row>
       <Row>
-        <Col className="mx-auto" sm={11} md={5} lg={4}>
-      <Form className="mb-2">
-      <Form.Control type="text"
-             value={ newUserName }
-             onChange={ handleAddName }
-             placeholder="Введите имя"
-             className="mb-2"
-      />
-      <Form.Check type="checkbox"
-             checked={ showName }
-             value={ showName }
-             onChange={ handleShowName }/>
+        <Col className="mx-auto" sm={ 11 } md={ 5 } lg={ 4 }>
+          <Form onSubmit={ handleSubmit } className="mb-2">
+            <Form.Control type="text"
+                          value={ value }
+                          onChange={ handleChangeName }
+                          placeholder="Введите имя"
+                          className="mb-2"
+            />
+            <Button type="submit"
+                    className="mb-2">Поменять имя</Button>
+            <Form.Check type="checkbox"
+                        checked={ checkboxValue }
+                        onChange={ handleChange }/>
 
-      <span >Show name</span>
-      </Form>
-      { showName && <div>{ newUserName }</div> }
+            <span>Show name</span>
+          </Form>
+          {
+            checkboxValue &&
+            <div>{ name }</div> }
         </Col>
       </Row>
     </Container>

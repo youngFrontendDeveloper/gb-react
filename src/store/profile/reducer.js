@@ -1,16 +1,25 @@
-import { changeName, toggleShowName } from "./actions";
-import { createReducer } from "@reduxjs/toolkit";
+import { CHANGE_NAME, TOGGLE_CHECKBOX, } from "./actions";
+
 
 const initialState = {
-  showName: false,
-  name: "Default"
+  checkbox: false,
+  name: "Default name"
 };
 
-export default createReducer( initialState, {
-  [ toggleShowName.type ]: (initialState) => {
-    initialState.showName = !initialState.showName;
-  },
-  // [changeName.type]: ()=>{
+export const profileReducer = (state = initialState, action ) => {
+  switch( action.type ) {
+    case TOGGLE_CHECKBOX:
+      return {
+        ...state,
+        checkbox: !state.checkbox
+      };
+    case CHANGE_NAME:
+      return {
+        ...state,
+        name: action.payload
+      };
+    default:
+      return state;
+  }
+};
 
-  // }
-} );

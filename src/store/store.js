@@ -1,9 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import profileSlice  from "./profile/profileSlice"
+import { combineReducers, createStore } from "redux";
+import { profileReducer } from "./profile/reducer";
+import { chatsReducer } from "./chats/reducer";
 
-
-export default configureStore( {
-  reducer: {
-    profileReducer: profileSlice
-  }
-} );
+export const store = createStore(
+  combineReducers( {
+    chats: chatsReducer,
+    profile: profileReducer
+  } ),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);

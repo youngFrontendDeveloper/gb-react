@@ -12,43 +12,46 @@ function Chats({ chatList, messages, setMessages, onDeleteChat, onAddChat }) {
   const { chatId } = useParams();
   const parentRef = useRef();
 
-  const handleSendMessage  = useCallback(
+  const handleSendMessage = useCallback(
     (newMessage) => {
       setMessages( (prevMessages) => ( {
         ...prevMessages,
-        [chatId]: [...prevMessages[chatId], newMessage ]} ) );
+        [ chatId ]: [ ...prevMessages[ chatId ], newMessage ]
+      } ) );
 
-    }, [chatId] );
+    }, [ chatId ] );
 
   useEffect( () => {
-    if( messages[chatId]?.length &&
-      messages[chatId]?.[messages[chatId]?.length - 1].author !== "Bot"){
+    if( messages[ chatId ]?.length &&
+      messages[ chatId ]?.[ messages[ chatId ]?.length - 1 ].author !== "Bot" ) {
       const timeout = setTimeout(
-        ()=> handleSendMessage({
+        () => handleSendMessage( {
           author: "Bot",
           text: "i am a bot",
-          id: `mes-${Date.now()}`,
-        }), 1500
-      )
-      return () => clearTimeout(timeout);
+          id: `mes-${ Date.now() }`,
+        } ), 1500
+      );
+      return () => clearTimeout( timeout );
     }
-  }, [messages] );
+  }, [ messages ] );
 
-  if (!messages[chatId]) {
-    return <Navigate replace to="/chats" />;
+  if( !messages[ chatId ] ) {
+    return <Navigate replace to="/chats"/>;
   }
 
   return (
-    <Container  ref={parentRef}>
+    <Container ref={ parentRef }>
       <Row>
         <Col>
-          <ChatList chatList={ chatList }
-                    onAddChat={ onAddChat }
-                    onDeleteChat={ onDeleteChat }/>
+          <ChatList
+            // chatList={ chatList }
+            // onAddChat={ onAddChat }
+            // onDeleteChat={ onDeleteChat }
+          />
         </Col>
         <Col>
-          <MessagesList messages={messages[chatId]} />
-          <FormMess sendMessage={ handleSendMessage  }/>
+          <MessagesList messages={ messages[ chatId ] }/>
+          <FormMess sendMessage={ handleSendMessage }/>
         </Col>
       </Row>
 

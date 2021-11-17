@@ -1,8 +1,10 @@
-import React, { useCallback, useState } from "react";
-import { Button, Col, Form, FormText, Nav, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Nav } from "react-bootstrap";
 import ChatItem from "../Chats/ChatItem";
+import { useDispatch, useSelector } from "react-redux";
+import { addChat, deleteChat } from "../../store/chats/actions";
+import "./ChatList.css";
 
-import "./ChatList.css"
 
 //
 // const chatsListData = [
@@ -23,40 +25,45 @@ import "./ChatList.css"
 //     id: "health",
 //   }
 // ];
-function ChatList({ chatList, onAddChat, onDeleteChat }) {
+// function ChatList({ chatList, onAddChat, onDeleteChat }) {
+function ChatList() {
+  const chatList = useSelector( state => state.chats );
   const [ value, setValue ] = useState( "" );
-
+  const dispatch = useDispatch();
+  const newId = `chat${ Date.now() }`;
+  console.log(chatList);
   const handleChange = (e) => {
     setValue( e.target.value );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddChat( value );
+    dispatch( addChat( { name: value, id: newId } ) );
     setValue( "" );
+  };
+
+  const onDeleteChat = (id) => {
+    dispatch( deleteChat( id ) );
   };
 
   return (
     <>
-      {/*<Row className="mb-2">*/}
-        <h4>Выберите чат:</h4>
-      {/*</Row>*/}
-      {/*<Row>*/}
-      {/*  <Col sm={ 10 } md={ 5 }>*/}
-          <Nav className="flex-column mb-3" >
-            {
-              chatList.map( chat => (
-                <Nav.Item key={ chat.id } className="d-flex">
-                  <ChatItem chat={ chat } onDeleteChat={ onDeleteChat }/>
-                </Nav.Item>
-              ) ) }
-          </Nav>
-          <Form onSubmit={ handleSubmit } className="chats__form">
-            <Form.Control value={ value } onChange={ handleChange }/>
-            <Button type="submit" className="button">Add chat</Button>
-          </Form>
-      {/*  </Col>*/}
-      {/*</Row>*/}
+      <h4>Выберите чат:</h4>
+      <Nav className="flex-column mb-3">
+        {
+          chatList.map( chat => (
+            <Nav.Item key={ chat.id } className="d-flex">
+              <ChatItem
+                chat={ chat }
+                onDeleteChat={ onDeleteChat }
+              />
+            </Nav.Item>
+          ) ) }
+      </Nav>
+      <Form onSubmit={ handleSubmit } className="chats__form">
+        <Form.Control value={ value } onChange={ handleChange }/>
+        <Button type="submit" className="button">Add chat</Button>
+      </Form>
     </>
   );
 }

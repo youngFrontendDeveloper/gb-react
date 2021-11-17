@@ -1,6 +1,5 @@
 import { CHANGE_NAME, TOGGLE_CHECKBOX, } from "./actions";
 
-
 const initialState = {
   checkbox: false,
   name: "Default name"

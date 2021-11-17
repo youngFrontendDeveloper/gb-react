@@ -7,18 +7,6 @@
   height: 100px;
 }
 
-.form__btn {
-  color: #706f6f !important;
-  background-color: rgba(193, 213, 232, 0.38) !important;
-  border: none !important;
-  border-radius: 4px;
-}
-
-.form__btn:hover {
-  color: #ffffff !important;
-  background-color: rgba(134, 152, 166, 0.66) !important;
-}
-
 /*.warning {*/
 /*  border:2px solid #d50a0a !important;*/
 /*  font-weight: bold;*/

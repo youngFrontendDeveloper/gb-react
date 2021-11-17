@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import "./Form.css";
 import uuid from "react-uuid";
-import { ChatListData } from "../../constants/ChatListData";
+
 
 function FormMess({ sendMessage }) {
   const [ userName, setUserName ] = useState( "" );
@@ -65,37 +65,30 @@ function FormMess({ sendMessage }) {
       messageRef.current.classList.add( "warning" );
       messageRef.current.placeholder = "Заполните это поле!";
     }
-
   };
 
-
   return (
-    <Row>
-      <Col className="mx-auto my-1 " md={ 9 } lg={ 7 }>
-        <Form onSubmit={ handleSubmit }>
-          <Form.Control ref={ nameRef }
-                        onChange={ changeAuthor }
-                        onFocus={ handleFocus }
-                        value={ userName }
-                        placeholder="Your name"
-                        className="mb-2 p-2 w-100  form__name"/>
+    <Form onSubmit={ handleSubmit }>
+      <Form.Control ref={ nameRef }
+                    onChange={ changeAuthor }
+                    onFocus={ handleFocus }
+                    value={ userName }
+                    placeholder="Your name"
+                    className="mb-2 p-2 w-100  form__name"/>
 
-          <Form.Control ref={ messageRef }
-                        onChange={ changeMessage }
-                        onFocus={ handleFocus }
-                        value={ userText }
-                        placeholder="Your message"
-                        className="mb-2 p-2 w-100 form__message"
-                        as="textarea"/>
-          <Button
-            className="form__btn" type="submit">Add
-          </Button>
+      <Form.Control ref={ messageRef }
+                    onChange={ changeMessage }
+                    onFocus={ handleFocus }
+                    value={ userText }
+                    placeholder="Your message"
+                    className="mb-2 p-2 w-100 form__message"
+                    as="textarea"/>
+      <Button
+        className="button" type="submit">Add
+      </Button>
 
-        </Form>
-      </Col>
-    </Row>
+    </Form>
   );
 }
-
 
 export default FormMess;

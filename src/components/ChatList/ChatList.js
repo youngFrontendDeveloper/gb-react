@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addChat } from "../../store/chats/actions";
 import "./ChatList.css";
 import { addMessageBlock } from "../../store/messages/actions";
+import { selectChatsList } from "../../store/chats/selectors";
 
 
 //
@@ -28,8 +29,7 @@ import { addMessageBlock } from "../../store/messages/actions";
 // ];
 // function ChatList({ chatList, onAddChat, onDeleteChat }) {
 function ChatList() {
-  const chatList = useSelector( state => state.chats );
-  // const messages = useSelector( state => state.messages );
+  const chatList = useSelector( selectChatsList );
   const [ value, setValue ] = useState( "" );
   const dispatch = useDispatch();
 
@@ -47,10 +47,7 @@ function ChatList() {
       const newId = `chat${ Date.now() }`;
       dispatch( addChat( { name, id: newId } ) );
       dispatch( addMessageBlock( newId ) );
-      // setMessages((prevMessages) => ({
-      //   ...prevMessages,
-      //   [newId]: [],
-      // }));
+
     },
     [ dispatch ]
   );

@@ -2,30 +2,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { changeName, toggleCheckbox } from "../../store/profile/actions";
-import { selectName } from "../../store/profile/selectors";
+import { selectCheckbox, selectName } from "../../store/profile/selectors";
 
 
 function Profile() {
-  const name = useSelector( state=>state.profile.name );
-  const checkboxValue = useSelector( (state) => state.profile.checkbox );
-  console.log(checkboxValue);
+  const name = useSelector( selectName );
+  const checkboxValue = useSelector( selectCheckbox);
+  console.log( checkboxValue );
   const [ value, setValue ] = useState( name );
   const dispatch = useDispatch();
 
 
-  const handleChange =useCallback( () => {
+  const handleChange = useCallback( () => {
     dispatch( toggleCheckbox );
-  },[dispatch]);
+  }, [ dispatch ] );
 
   const handleChangeName = (e) => {
     setValue( e.target.value );
   };
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback( (e) => {
     e.preventDefault();
-    dispatch( changeName(value) );
-    setValue("")
-  },[dispatch, value]);
+    dispatch( changeName( value ) );
+    setValue( "" );
+  }, [ dispatch, value ] );
 
 
   return (

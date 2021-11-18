@@ -7,8 +7,6 @@ import Main from "./components/Main/Main";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-
-
   const footerText = "This is a footer";
 
   return (

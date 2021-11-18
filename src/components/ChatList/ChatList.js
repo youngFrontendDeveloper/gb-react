@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button, Form, Nav } from "react-bootstrap";
 import ChatItem from "../Chats/ChatItem";
 import { useDispatch, useSelector } from "react-redux";
-import { addChat, deleteChat } from "../../store/chats/actions";
+import { addChat } from "../../store/chats/actions";
 import "./ChatList.css";
+import { addMessageBlock } from "../../store/messages/actions";
 
 
 //
@@ -28,23 +29,31 @@ import "./ChatList.css";
 // function ChatList({ chatList, onAddChat, onDeleteChat }) {
 function ChatList() {
   const chatList = useSelector( state => state.chats );
+  // const messages = useSelector( state => state.messages );
   const [ value, setValue ] = useState( "" );
   const dispatch = useDispatch();
-  const newId = `chat${ Date.now() }`;
-  console.log(chatList);
+
   const handleChange = (e) => {
     setValue( e.target.value );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch( addChat( { name: value, id: newId } ) );
+    AddChat(value);
     setValue( "" );
   };
 
-  const onDeleteChat = (id) => {
-    dispatch( deleteChat( id ) );
-  };
+  const AddChat = useCallback( (name) => {
+      const newId = `chat${ Date.now() }`;
+      dispatch( addChat( { name, id: newId } ) );
+      dispatch( addMessageBlock( newId ) );
+      // setMessages((prevMessages) => ({
+      //   ...prevMessages,
+      //   [newId]: [],
+      // }));
+    },
+    [ dispatch ]
+  );
 
   return (
     <>
@@ -55,7 +64,6 @@ function ChatList() {
             <Nav.Item key={ chat.id } className="d-flex">
               <ChatItem
                 chat={ chat }
-                onDeleteChat={ onDeleteChat }
               />
             </Nav.Item>
           ) ) }

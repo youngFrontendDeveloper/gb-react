@@ -76,7 +76,7 @@ function Main() {
             // onAddChat={ handleAddChat }
             // onDeleteChat={ handleDeleteChat }
             // chatList={ chatList }
-            />           }/>
+            /> }/>
           <Route exact path=":chatId" element={ <Chats
             // chatList={ chatList }
             messages={ messages }

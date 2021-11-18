@@ -2,13 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./Form.css";
 import uuid from "react-uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { addMessage } from "../../store/messages/actions";
+import { useParams } from "react-router-dom";
 
 
 function FormMess({ sendMessage }) {
+  const messages = useSelector( state => state.initialState );
   const [ userName, setUserName ] = useState( "" );
   const [ userText, setUserText ] = useState( "" );
   const nameRef = useRef();  // Для фокуса на инпуте
   const messageRef = useRef();
+  const dispatch = useDispatch();
+  const chatId = useParams();
 
   //Устанавливаю фокус после первого рендера
   useEffect( () => {
@@ -38,12 +44,19 @@ function FormMess({ sendMessage }) {
     e.preventDefault();
 
     if( userName && userText ) {  // проверка заполнения полей
-      sendMessage(
+      dispatch( addMessage(
         {
           id: uuid(),
           author: userName,
           text: userText
-        } );
+        // }, chatId ) );
+    } ) );
+      // sendMessage(
+      //   {
+      //     id: uuid(),
+      //     author: userName,
+      //     text: userText
+      //   } );
 
       setUserName( "" );
 
@@ -66,6 +79,21 @@ function FormMess({ sendMessage }) {
       messageRef.current.placeholder = "Заполните это поле!";
     }
   };
+
+  // useEffect( () => {
+  //   if( messages[ chatId ]?.length &&
+  //     messages[ chatId ]?.[ messages[ chatId ]?.length - 1 ].author !== "Bot" ) {
+  //     const timeout = setTimeout(()=>{
+  //       dispatch( addMessage(
+  //         {
+  //         author: "Bot",
+  //         text: "i am a bot",
+  //         id: `mes-${ Date.now() }`,
+  //       }, chatId))}, 1500
+  //     );
+  //     return () => clearTimeout( timeout );
+  //   }
+  // }, [ messages ] );
 
   return (
     <Form onSubmit={ handleSubmit }>

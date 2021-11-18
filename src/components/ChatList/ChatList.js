@@ -47,7 +47,6 @@ function ChatList() {
       const newId = `chat${ Date.now() }`;
       dispatch( addChat( { name, id: newId } ) );
       dispatch( addMessageBlock( newId ) );
-
     },
     [ dispatch ]
   );

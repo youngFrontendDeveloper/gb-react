@@ -14,7 +14,8 @@ function FormMess({ sendMessage }) {
   const nameRef = useRef();  // Для фокуса на инпуте
   const messageRef = useRef();
   const dispatch = useDispatch();
-  const chatId = useParams();
+  const chat = useParams();
+  console.log(chat.chatId);
 
   //Устанавливаю фокус после первого рендера
   useEffect( () => {
@@ -49,8 +50,8 @@ function FormMess({ sendMessage }) {
           id: uuid(),
           author: userName,
           text: userText
-        // }, chatId ) );
-    } ) );
+        }, chat.chatId ) );
+    // } ) );
       // sendMessage(
       //   {
       //     id: uuid(),

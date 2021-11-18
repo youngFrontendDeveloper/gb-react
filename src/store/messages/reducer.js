@@ -29,7 +29,7 @@ export const messagesReducer = (state = initialMessages, { type, payload }) => {
     case ADD_MESSAGE:
       return {
         ...state,
-        // [ payload.chatId ]: [ ...state[ payload.chatId ], payload.newMessage ]
+        [ payload.id ]: [ ...state[ payload.id ], payload.newMessage ]
       };
     case ADD_MESSAGE_BLOCK:
       return {

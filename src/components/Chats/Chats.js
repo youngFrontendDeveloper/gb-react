@@ -53,14 +53,14 @@ function Chats() {
   return (
     <Container ref={ parentRef }>
       <Row>
-        <Col>
+        <Col sm={11} md={6}>
           <ChatList
             // chatList={ chatList }
             // onAddChat={ onAddChat }
             // onDeleteChat={ onDeleteChat }
           />
         </Col>
-        <Col>
+        <Col sm={11} md={6}>
           <MessagesList
             // messages={ messages[ chatId ] }
             messages={ messages }

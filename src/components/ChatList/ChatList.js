@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from "react";
-import { Button, Form, Nav } from "react-bootstrap";
+import { Button, Form, Nav, Row, Col } from "react-bootstrap";
 import ChatItem from "../Chats/ChatItem";
 import { useDispatch, useSelector } from "react-redux";
 import { addChat } from "../../store/chats/actions";
-import "./ChatList.css";
 import { addMessageBlock } from "../../store/messages/actions";
 import { selectChatsList } from "../../store/chats/selectors";
 
+import "./ChatList.css";
 
 //
 // const chatsListData = [
@@ -39,7 +39,7 @@ function ChatList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    AddChat(value);
+    AddChat( value );
     setValue( "" );
   };
 
@@ -52,23 +52,26 @@ function ChatList() {
   );
 
   return (
-    <>
-      <h4>Выберите чат:</h4>
-      <Nav className="flex-column mb-3">
-        {
-          chatList.map( chat => (
-            <Nav.Item key={ chat.id } className="d-flex">
-              <ChatItem
-                chat={ chat }
-              />
-            </Nav.Item>
-          ) ) }
-      </Nav>
-      <Form onSubmit={ handleSubmit } className="chats__form">
-        <Form.Control value={ value } onChange={ handleChange }/>
-        <Button type="submit" className="button">Add chat</Button>
-      </Form>
-    </>
+
+    <Row>
+      <Col className="p-5 pt-3 chat__list">
+        <h4>Выберите чат:</h4>
+        <Nav className="flex-column mb-3">
+          {
+            chatList.map( chat => (
+              <Nav.Item key={ chat.id } className="d-flex justify-content-between">
+                <ChatItem
+                  chat={ chat }
+                />
+              </Nav.Item>
+            ) ) }
+        </Nav>
+        <Form onSubmit={ handleSubmit }>
+          <Form.Control value={ value } onChange={ handleChange } className="mb-2"/>
+          <Button type="submit" className="button">Add chat</Button>
+        </Form>
+      </Col>
+    </Row>
   );
 }
 

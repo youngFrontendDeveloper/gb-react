@@ -22,28 +22,28 @@ import ChatList from "../ChatList/ChatList";
 //   },
 // ];
 
-const initialMessages = {
-  chat1: [
-    {
-      text: "text1",
-      author: "human",
-      id: "mes1",
-    },
-  ],
-  chat2: [
-    {
-      text: "this is chat2",
-      author: "human",
-      id: "mes2",
-    },
-  ],
-  chat3: [],
-};
+// const initialMessages = {
+//   chat1: [
+//     {
+//       text: "text1",
+//       author: "human",
+//       id: "mes1",
+//     },
+//   ],
+//   chat2: [
+//     {
+//       text: "this is chat2",
+//       author: "human",
+//       id: "mes2",
+//     },
+//   ],
+//   chat3: [],
+// };
 
 function Main() {
 
   // const [ chatList, setChatList ] = useState( initialChatList );
-  const [ messages, setMessages ] = useState( initialMessages );
+  // const [ messages, setMessages ] = useState( initialMessages );
 
   // const handleAddChat = useCallback( (name) => {
   //   const newId = `chat${ Date.now() }`;
@@ -79,8 +79,8 @@ function Main() {
             /> }/>
           <Route exact path=":chatId" element={ <Chats
             // chatList={ chatList }
-            messages={ messages }
-            setMessages={ setMessages }
+            // messages={ messages }
+            // setMessages={ setMessages }
             // onAddChat={ handleAddChat }
             // onDeleteChat={ handleDeleteChat }
           /> }/>

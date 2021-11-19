@@ -43,7 +43,7 @@ function Profile() {
                           className="mb-2"
             />
             <Button type="submit"
-                    className="mb-2">Поменять имя</Button>
+                    className="mb-2 button">Поменять имя</Button>
             <Form.Check type="checkbox"
                         checked={ checkboxValue }
                         onChange={ handleChange }/>

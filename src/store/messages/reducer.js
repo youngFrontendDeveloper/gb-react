@@ -1,22 +1,23 @@
-import { ADD_MESSAGE, ADD_MESSAGE_BLOCK } from "./actions";
-import uuid from "react-uuid";
+import { ADD_MESSAGE, DELETE_MESSAGE } from "./actions";
+import { ADD_CHAT, DELETE_CHAT } from "../chats/actions";
+
 
 const initialMessages = {
   chat1: [
     {
-      id: uuid(),
+      id: `mes-${ Date.now() }`,
       author: "Name",
       text: "Message"
     },
     {
-      id: uuid(),
+      id: `mes-${ Date.now() }`,
       author: "SomeName",
       text: "Message2"
     },
   ],
   chat2: [
     {
-      id: uuid(),
+      id: `mes-${ Date.now() }`,
       author: "Author",
       text: "this is chat2"
     },
@@ -26,15 +27,34 @@ const initialMessages = {
 
 export const messagesReducer = (state = initialMessages, { type, payload }) => {
   switch( type ) {
+
     case ADD_MESSAGE:
       return {
         ...state,
-        [ payload.id ]: [ ...state[ payload.id ], payload.newMessage ]
+        [ payload.chatId ]: [ ...state[ payload.chatId ], payload.newMessage ]
       };
-    case ADD_MESSAGE_BLOCK:
+
+    case DELETE_MESSAGE: {
+      const newMessages = { ...state };
+      newMessages[ payload.chatId ] = newMessages[ payload.chatId ].filter( ({ id }) => id !== payload.idToDelete );
+      return newMessages;
+    }
+
+    case ADD_CHAT:
       return {
-        ...state, [payload]:[]
-      }
+        ...state,
+        [ payload.id ]: []
+      };
+
+    case DELETE_CHAT: {
+      const newMessages = { ...state };
+      delete newMessages[ payload.chatId ];
+    }
+
+    // case ADD_MESSAGE_BLOCK:
+    //   return {
+    //     ...state, [payload]:[]
+    //   }
     default:
       return state;
   }

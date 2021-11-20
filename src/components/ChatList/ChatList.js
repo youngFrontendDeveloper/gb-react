@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Nav, Row, Col } from "react-bootstrap";
 import ChatItem from "../Chats/ChatItem";
-import { useDispatch, useSelector } from "react-redux";
 import { addChat } from "../../store/chats/actions";
-import { addMessageBlock } from "../../store/messages/actions";
 import { selectChatsList } from "../../store/chats/selectors";
 
 import "./ChatList.css";
@@ -28,6 +27,7 @@ import "./ChatList.css";
 //   }
 // ];
 // function ChatList({ chatList, onAddChat, onDeleteChat }) {
+
 function ChatList() {
   const chatList = useSelector( selectChatsList );
   const [ value, setValue ] = useState( "" );
@@ -39,17 +39,26 @@ function ChatList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    AddChat( value );
+
+    const newId = `chat${ Date.now() }`;
+    dispatch( addChat( { name: value, id: newId } ) );
     setValue( "" );
   };
 
-  const AddChat = useCallback( (name) => {
-      const newId = `chat${ Date.now() }`;
-      dispatch( addChat( { name, id: newId } ) );
-      dispatch( addMessageBlock( newId ) );
-    },
-    [ dispatch ]
-  );
+  // Мой вариант:
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   AddChat( value );
+  //   setValue( "" );
+  // };
+  //
+  // const AddChat = useCallback( (name) => {
+  //     const newId = `chat${ Date.now() }`;
+  //     dispatch( addChat( { name, id: newId } ) );
+  //     dispatch( addMessageBlock( newId ) );
+  //   },
+  //   [ dispatch ]
+  // );
 
   return (
 

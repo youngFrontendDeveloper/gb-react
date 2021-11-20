@@ -1,20 +1,20 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import ChatList from "../ChatList/ChatList";
-import { ChatListData } from "../../constants/ChatListData";
+// import { ChatListData } from "../../constants/ChatListData";
 import MessagesList from "../MessagesList/MessagesList";
 import FormMess from "../Form/Form";
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
-import ChatItem from "./ChatItem";
+import { Navigate,  useParams } from "react-router-dom";
+// import ChatItem from "./ChatItem";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../../store/messages/actions";
+import { selectMessages } from "../../store/messages/selectors";
 
 
 // function Chats({ chatList, messages, setMessages, onDeleteChat, onAddChat }) {
 function Chats() {
   const { chatId } = useParams();
-  const parentRef = useRef();
-  const messages = useSelector( state => state.messages[chatId] );
+  const messages = useSelector( selectMessages );
 
   // const dispatch = useDispatch();
   // const messages = useSelector( state => state.messages );
@@ -46,24 +46,19 @@ function Chats() {
   //   }
   // }, [ messages ] );
 
-  // if( !messages[ chatId ] ) {
-  //   return <Navigate replace to="/chats"/>;
-  // }
+  if( !messages[ chatId ] ) {
+    return <Navigate replace to="/chats"/>;
+  }
 
   return (
-    <Container ref={ parentRef }>
+    <Container>
       <Row>
-        <Col sm={11} md={6}>
-          <ChatList
-            // chatList={ chatList }
-            // onAddChat={ onAddChat }
-            // onDeleteChat={ onDeleteChat }
-          />
+        <Col sm={ 11 } md={ 6 }>
+          <ChatList/>
         </Col>
-        <Col sm={11} md={6}>
+        <Col sm={ 11 } md={ 6 }>
           <MessagesList
-            // messages={ messages[ chatId ] }
-            messages={ messages }
+            messages={ messages[chatId] }
           />
           <FormMess
             // sendMessage={ handleSendMessage }

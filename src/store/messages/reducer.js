@@ -43,12 +43,9 @@ export const messagesReducer = (state = initialMessages, { type, payload }) => {
     case DELETE_CHAT: {
       const newMessages = { ...state };
       delete newMessages[ payload.chatId ];
+      return newMessages;
     }
 
-    // case ADD_MESSAGE_BLOCK:
-    //   return {
-    //     ...state, [payload]:[]
-    //   }
     default:
       return state;
   }

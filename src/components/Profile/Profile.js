@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { changeName, toggleCheckbox } from "../../store/profile/actions";
 import { selectCheckbox, selectName } from "../../store/profile/selectors";
+import NameProfile from "./NameProfile";
 
 
 function Profile() {
@@ -47,12 +48,8 @@ function Profile() {
             <Form.Check type="checkbox"
                         checked={ checkboxValue }
                         onChange={ handleChange }/>
-
-            <span>Show name</span>
           </Form>
-          {
-            checkboxValue &&
-            <div>{ name }</div> }
+          <NameProfile name={name} checkbox={checkboxValue}/>
         </Col>
       </Row>
     </Container>

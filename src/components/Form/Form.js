@@ -1,20 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import "./Form.css";
-import uuid from "react-uuid";
-import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../../store/messages/actions";
+import { useDispatch, } from "react-redux";
+import { addMessageWithThunk } from "../../store/messages/actions";
 import { useParams } from "react-router-dom";
-
+import "./Form.css";
 
 function FormMess() {
-  // const messages = useSelector( state => state.initialState );
+
   const [ userName, setUserName ] = useState( "" );
   const [ userText, setUserText ] = useState( "" );
   const nameRef = useRef();  // Для фокуса на инпуте
   const messageRef = useRef();
   const dispatch = useDispatch();
-  const {chatId} = useParams();
+  const { chatId } = useParams();
+
+  const userMessage = {
+    id: `mes-${ Date.now() }`,
+    author: userName,
+    text: userText
+  };
 
   //Устанавливаю фокус после первого рендера
   useEffect( () => {
@@ -39,17 +43,18 @@ function FormMess() {
     e.target.classList.remove( "warning" );
   };
 
+
+  const onAddMessage = useCallback( (message) => {
+    dispatch( addMessageWithThunk( message, chatId ) );
+  }, [chatId, dispatch] );
+
+
   // Вывожу данные при отправке формы
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if( userName && userText ) {  // проверка заполнения полей
-      dispatch( addMessage(
-        {
-          id: `mes-${Date.now()}`,
-          author: userName,
-          text: userText
-        }, chatId ) );
+      onAddMessage( userMessage );
 
       setUserName( "" );
       setUserText( "" );

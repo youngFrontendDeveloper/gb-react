@@ -1,19 +1,13 @@
 import { ADD_MESSAGE, DELETE_MESSAGE } from "./actions";
 import { ADD_CHAT, DELETE_CHAT } from "../chats/actions";
 
-
 const initialMessages = {
   chat1: [
     {
       id: `mes-${ Date.now() }`,
       author: "Name",
       text: "Message"
-    },
-    {
-      id: `mes-${ Date.now() }`,
-      author: "SomeName",
-      text: "Message2"
-    },
+    }
   ],
   chat2: [
     {

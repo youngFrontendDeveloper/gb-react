@@ -7,27 +7,6 @@ import { selectChatsList } from "../../store/chats/selectors";
 
 import "./ChatList.css";
 
-//
-// const chatsListData = [
-//   {
-//     name: "Чат о новых фильмах",
-//     id: "films",
-//   },
-//   {
-//     name: "Чат о детях",
-//     id: "children",
-//   },
-//   {
-//     name: "Чат о машинах",
-//     id: "cars",
-//   },
-//   {
-//     name: "Чат о здоровье",
-//     id: "health",
-//   }
-// ];
-// function ChatList({ chatList, onAddChat, onDeleteChat }) {
-
 function ChatList() {
   const chatList = useSelector( selectChatsList );
   const [ value, setValue ] = useState( "" );

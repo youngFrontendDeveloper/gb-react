@@ -34,5 +34,4 @@ export const addMessageWithThunk = (message, chatId) => (dispatch) => {
     };
     setTimeout( () => dispatch( addMessage( botMessage, chatId ) ), 1500 );
   }
-
 };

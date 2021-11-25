@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectBooksError, selectBooksList, selectBooksLoading } from "../../store/books/selectors";
 import { useCallback, useEffect } from "react";
-import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Spinners from "../Spinners/Spinners";
 import "./BooksList.css";
 import { getBooks } from "../../store/books/actions";
@@ -75,13 +75,15 @@ function BooksList() {
   // );
 
   const renderBooksList = (book) => (
-    <ListGroup.Item key={ book.id } className="d-flex book">
-      <img src={ book.src } alt="Изображение книги" className="d-block book__img"/>
-      <div className="flex-fill flex-wrap">
-        <p className="books__author"><span className="fw-bold d-block">Автор: </span>{ book.author } </p>
-        <p className="book__title"><span className="fw-bold d-block">Название книги: </span>{ book.title }</p>
+    <Card key={ book.id } className=" mb-3 book">
+      <div className="d-block mx-auto pt-3 mb-2 book__img-wrapper">
+        <Card.Img src={ book.src } alt="Изображение книги" className=" book__img"/>
       </div>
-    </ListGroup.Item>
+      <Card.Body className="flex-fill flex-wrap">
+        <Card.Title className="books__author"><span className="fw-bold d-block">Автор: </span>{ book.author } </Card.Title>
+        <Card.Text className="book__title"><span className="fw-bold d-block">Название книги: </span>{ book.title }</Card.Text>
+      </Card.Body>
+    </Card>
   );
 
   // if( error ) {
@@ -102,7 +104,7 @@ function BooksList() {
   return (
     <Container>
      <Row>
-       <h2 className="mb-3 books__title">List of books</h2>
+       <h1 className="page__title">List of books</h1>
      </Row>
       {/*{ isLoading ? (*/ }
       {/*  <Spinners/>*/ }
@@ -117,7 +119,7 @@ function BooksList() {
       {/*) }*/ }
 
       <Row className="mb-5">
-        <Col sm={10} md={8} lg={6}>
+        <Col className="mx-auto" sm={10} md={11} >
 
           { isLoading ? (
             <Spinners/>
@@ -129,9 +131,9 @@ function BooksList() {
             )
             : (
               <>
-                <ListGroup className="books mx-auto" >
+                <div className="books mx-auto d-flex flex-wrap justify-content-evenly" >
                   { books.map( renderBooksList ) }
-                </ListGroup>
+                </div>
               </>
             ) }
         </Col>

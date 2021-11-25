@@ -5,8 +5,6 @@ import { changeName, toggleCheckbox } from "../../store/profile/actions";
 import { selectCheckbox, selectName } from "../../store/profile/selectors";
 import NameProfile from "./NameProfile";
 
-import "./Profile.css";
-
 function Profile() {
   const name = useSelector( selectName );
   const checkboxValue = useSelector( selectCheckbox );
@@ -32,8 +30,8 @@ function Profile() {
 
   return (
     <Container>
-      <Row>
-        <h1 className="profile__title">This is a Profile page</h1>
+      <Row className="mb-3">
+        <h1 className="page__title">This is a Profile page</h1>
       </Row>
       <Row>
         <Col className="mx-auto" sm={ 11 } md={ 5 } lg={ 4 }>

@@ -36,3 +36,9 @@ textarea.warning:-moz-placeholder {
   color: #ffffff !important;
   background-color: rgba(134, 152, 166, 0.66) !important;
 }
+
+.page__title {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  color: rgb(127 165 202);
+}

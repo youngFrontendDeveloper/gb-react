@@ -1,3 +1,7 @@
 .chat__list {
   max-width: 500px!important;
 }
+
+.chats__title {
+  color: rgb(127 165 202);
+}

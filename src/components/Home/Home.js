@@ -4,8 +4,8 @@ function Home() {
   return (
     <Container>
       <Row className="mb-3">
-        <h1 className="mb-3 home__title">This is a Home page</h1>
-        <p >Это моя учебная работа на курсе GeekBrains:<br/>
+        <h1 className="page__title">This is a Home page</h1>
+        <p className="fs-5">Это моя учебная работа на курсе GeekBrains:<br/>
           <span className="fw-bold">"ReactJS. Базовый курс"</span></p>
       </Row>
       <Row>

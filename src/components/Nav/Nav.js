@@ -14,6 +14,9 @@ function Navs() {
       <Nav.Item>
         <Nav.Link as={ Link } to="/profile" eventKey="Profile">Profile</Nav.Link>
       </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as={ Link } to="/books" eventKey="BooksList">Books</Nav.Link>
+      </Nav.Item>
     </Nav>
   );
 }

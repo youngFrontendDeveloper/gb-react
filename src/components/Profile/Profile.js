@@ -5,10 +5,11 @@ import { changeName, toggleCheckbox } from "../../store/profile/actions";
 import { selectCheckbox, selectName } from "../../store/profile/selectors";
 import NameProfile from "./NameProfile";
 
+import "./Profile.css";
 
 function Profile() {
   const name = useSelector( selectName );
-  const checkboxValue = useSelector( selectCheckbox);
+  const checkboxValue = useSelector( selectCheckbox );
   console.log( checkboxValue );
   const [ value, setValue ] = useState( name );
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Profile() {
   return (
     <Container>
       <Row>
-        <h1>This is a Profile page</h1>
+        <h1 className="profile__title">This is a Profile page</h1>
       </Row>
       <Row>
         <Col className="mx-auto" sm={ 11 } md={ 5 } lg={ 4 }>
@@ -49,7 +50,7 @@ function Profile() {
                         checked={ checkboxValue }
                         onChange={ handleChange }/>
           </Form>
-          <NameProfile name={name} checkbox={checkboxValue}/>
+          <NameProfile name={ name } checkbox={ checkboxValue }/>
         </Col>
       </Row>
     </Container>

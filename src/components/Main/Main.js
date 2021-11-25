@@ -5,6 +5,8 @@ import Home from "../Home/Home";
 import Profile from "../Profile/Profile";
 import Error from "../Error/Error";
 import ChatList from "../ChatList/ChatList";
+import BooksList from "../BooksList/BooksList";
+
 import "./Main.css";
 
 function Main() {
@@ -18,6 +20,7 @@ function Main() {
           <Route index element={ <ChatList/> }/>
           <Route exact path=":chatId" element={ <Chats/> }/>
         </Route>
+        <Route path="/books" element={ <BooksList/> }/>
         <Route path="*" element={ <Error/> }/>
       </Routes>
     </main>

@@ -1,0 +1,9 @@
+.sign-in-link {
+  padding: 7px;
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: none;
+}
+
+.sign-in-link:hover {
+  cursor: pointer;
+}

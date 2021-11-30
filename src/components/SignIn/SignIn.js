@@ -9,6 +9,7 @@ function SignIn() {
   const [loading, setLoading] = useState(false);
 
   const handleSingIn = async (email, pass) => {
+    setError("");
     setLoading(true);
     try {
       await logIn(email, pass);
@@ -24,7 +25,13 @@ function SignIn() {
 
   return (
     <>
-      <a className="m-2 sign-in-link" onClick={() => setModalShow(true)}>
+      <a
+        className="m-2 sign-in-link"
+        onClick={() => {
+          setModalShow(true);
+          setError("");
+        }}
+      >
         Sign in
       </a>
       <ModalSign

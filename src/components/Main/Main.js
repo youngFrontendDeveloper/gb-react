@@ -51,13 +51,14 @@ function Main() {
       <Routes>
         <Route exact path="/" element={<Home />} />
 
-        {/* <Route exact path="/" element={<PublicOutlet />}>
+        {/* <Route exact path="/" element={<PublicRoute />}>
           <Route path="" element={<Home />} />
         </Route> */}
+
         <Route
           path="/profile"
           element={
-            <PrivateRoute>
+            <PrivateRoute path={"profile"}>
               <ConnectedProfile />
             </PrivateRoute>
           }
@@ -66,7 +67,7 @@ function Main() {
           <Route
             index
             element={
-              <PrivateRoute>
+              <PrivateRoute path={"chats"}>
                 <ChatList />
               </PrivateRoute>
             }
@@ -82,11 +83,60 @@ function Main() {
           />
         </Route>
         <Route path="/books" element={<BooksList />} />
-        <Route path="/warning" element={<RegistrationWarning />} />
+        <Route exact path="/warning" element={<PublicOutlet />}>
+          <Route path="" element={<RegistrationWarning />} />
+        </Route>
         <Route path="*" element={<Error />} />
       </Routes>
     </main>
   );
+
+  // return (
+  //   <main className="main_block">
+  //     <Routes>
+  //       <Route exact path="/" element={<Home />} />
+
+  //       {/* <Route exact path="/" element={<PublicOutlet />}>
+  //         <Route path="" element={<Home />} />
+  //       </Route> */}
+
+  //       <Route
+  //         path="/profile"
+  //         element={
+  //           <PrivateRoute>
+  //             <ConnectedProfile />
+  //           </PrivateRoute>
+  //         }
+  //       />
+  //       <Route path="chats">
+  //         <Route
+  //           index
+  //           element={
+  //             <PrivateRoute>
+  //               <ChatList />
+  //             </PrivateRoute>
+  //           }
+  //         />
+  //         <Route
+  //           exact
+  //           path=":chatId"
+  //           element={
+  //             <PrivateRoute>
+  //               <Chats msgs={msgs} />
+  //             </PrivateRoute>
+  //           }
+  //         />
+  //       </Route>
+  //       <Route path="/books" element={<BooksList />} />
+  //       {/* <Route path="/warning" element={<RegistrationWarning />} /> */}
+  //       {/* <Route exact path="/warning" element={<PublicOutlet />}> */}
+  //       <Route exact path="/warning" element={<PublicOutlet />}>
+  //         <Route path="" element={<RegistrationWarning />} />
+  //       </Route>
+  //       <Route path="*" element={<Error />} />
+  //     </Routes>
+  //   </main>
+  // );
 
   // return (
   //   <main className="main_block">

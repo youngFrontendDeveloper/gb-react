@@ -16,7 +16,7 @@ function SignIn() {
     setLoading(true);
     try {
       await logIn(email, pass);
-      dispatch(signIn);
+      dispatch(signIn());
       setModalShow(false);
     } catch (err) {
       console.log(err);

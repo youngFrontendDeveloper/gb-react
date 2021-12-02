@@ -12,7 +12,7 @@ import ChatList from "../ChatList/ChatList";
 import BooksList from "../BooksList/BooksList";
 import RegistrationWarning from "../RegistrationWarning/RegistrationWarning";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import { PublicOutlet, PublicRoute } from "../PublicRoute/PublicRoute";
+import { PublicOutlet } from "../PublicRoute/PublicRoute";
 
 import "./Main.css";
 

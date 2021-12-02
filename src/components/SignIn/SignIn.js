@@ -2,9 +2,10 @@ import { useState } from "react";
 import ModalSign from "../ModalSign/ModalSign";
 import { logIn } from "../../services/firebase";
 import { signIn } from "../../store/profile/actions";
-import "./SignIn.css";
+import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
+import "./SignIn.css";
 function SignIn() {
   const [modalShow, setModalShow] = useState(false);
   const [error, setError] = useState("");
@@ -29,15 +30,15 @@ function SignIn() {
 
   return (
     <>
-      <a
-        className="m-2 sign-in-link"
+      <Button
+        className="m-2 sign-in-link button"
         onClick={() => {
           setModalShow(true);
           setError("");
         }}
       >
         Sign in
-      </a>
+      </Button>
       <ModalSign
         show={modalShow}
         onHide={() => setModalShow(false)}

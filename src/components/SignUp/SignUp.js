@@ -2,7 +2,9 @@
 import { useState } from "react";
 import ModalSign from "../ModalSign/ModalSign";
 import { signUp } from "../../services/firebase";
+import { Button } from "react-bootstrap";
 import "./SignUp.css";
+// import Button from "@restart/ui/esm/Button";
 
 function SignUp() {
   const [modalShow, setModalShow] = useState(false);
@@ -24,9 +26,12 @@ function SignUp() {
 
   return (
     <>
-      <a className="m-2 sign-up-link" onClick={() => setModalShow(true)}>
+      <Button
+        className="m-2 sign-up-link button"
+        onClick={() => setModalShow(true)}
+      >
         Sign up
-      </a>
+      </Button>
       <ModalSign
         show={modalShow}
         onHide={() => setModalShow(false)}

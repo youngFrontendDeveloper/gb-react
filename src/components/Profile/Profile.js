@@ -1,14 +1,17 @@
-import { useDispatch, useSelector, connect, shallowEqual } from "react-redux";
-import { useCallback, useState, useEffect } from "react";
+import { useSelector, connect, shallowEqual } from "react-redux";
+import { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { onValue, set } from "firebase/database";
-import { logOut, userRef } from "../../services/firebase";
+import { userRef } from "../../services/firebase";
 import {
   changeName,
-  signOut,
+  // signOut,
   toggleCheckbox,
 } from "../../store/profile/actions";
-import { selectCheckbox, selectName } from "../../store/profile/selectors";
+import {
+  // selectCheckbox,
+  selectName,
+} from "../../store/profile/selectors";
 import NameProfile from "./NameProfile";
 
 export function Profile({ checkboxValue, setName, changeChecked }) {
@@ -106,6 +109,7 @@ const mapDispatchToProps = (dispatch) => ({
   // logOut: () => dispatch(signOut()),
 });
 
+// eslint-disable-next-line
 const mapDispatchToProps2 = {
   setName: changeName,
 };

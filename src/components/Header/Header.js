@@ -21,7 +21,9 @@ function Header() {
       <div className="header__sign">
         <SignUp />
         <SignIn />
-        <Button variant="danger" onClick={handleLogOutClick}>Sign out</Button>
+        <Button variant="outline-danger" onClick={handleLogOutClick}>
+          Sign out
+        </Button>
       </div>
     </header>
   );

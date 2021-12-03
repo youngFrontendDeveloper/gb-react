@@ -44,7 +44,7 @@ export function Profile({ checkboxValue, setName, changeChecked }) {
   // );
 
   const handleChange = () => {
-    changeChecked();
+    changeChecked(); // dispatch(toggleCheckbox)
   };
 
   const handleChangeName = (e) => {

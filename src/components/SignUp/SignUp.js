@@ -19,9 +19,16 @@ function SignUp() {
     } catch (err) {
       console.log(err);
       setError(err.message);
+      console.log(error);
     } finally {
       setLoading(false);
     }
+  };
+
+  // Закрытие модального окна
+  const onHide = () => {
+    setModalShow(false);
+    setError("");
   };
 
   return (
@@ -34,7 +41,7 @@ function SignUp() {
       </Button>
       <ModalSign
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={onHide}
         handleSign={handleSingUp}
         error={error}
         loading={loading}

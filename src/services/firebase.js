@@ -19,6 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Получаем объект auth из инициализированного приложения
 export const auth = getAuth(app);
 
 export const signUp = async (email, pass) =>
@@ -29,11 +30,23 @@ export const logIn = async (email, pass) =>
 
 export const logOut = async () => await signOut(auth);
 
+// Получаем данные из базы данных farebase:
 export const db = getDatabase(app);
+
+// сылка на user из базы данных
 export const userRef = ref(db, "user");
+
+// сылка на chats из базы данных
 export const chatsRef = ref(db, "chats");
+
+// сылка на messages из базы данных
 export const messagesRef = ref(db, "messages");
+
+// Доступ к конкретному чату
 export const getChatRefById = (id) => ref(db, `chats/${id}`);
+
+// Доступ к сообщениям у конкретного чата
 export const getChatMsgsListRefById = (chatId) =>
   ref(db, `messages/${chatId}/messageList`);
+
 export const getChatMsgsRefById = (chatId) => ref(db, `messages/${chatId}`);

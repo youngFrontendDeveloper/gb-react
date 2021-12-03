@@ -21,6 +21,7 @@ function Main() {
   const [msgs, setMsgs] = useState({});
 
   useEffect(() => {
+    //подписка на изменение авторизации
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(signIn());
@@ -29,8 +30,9 @@ function Main() {
       }
     }, []);
 
+    //удаление подписки на изменение  авторизации
     return () => unsubscribe();
-  });
+  }, []);
 
   useEffect(() => {
     onValue(messagesRef, (snapshot) => {

@@ -10,7 +10,6 @@ import { selectAuth } from "../../store/profile/selectors";
 
 export const PublicOutlet = () => {
   const authed = useSelector(selectAuth);
-  console.log(<Outlet />);
 
   return !authed ? <Outlet /> : <Navigate to="/chats" replace />;
 };

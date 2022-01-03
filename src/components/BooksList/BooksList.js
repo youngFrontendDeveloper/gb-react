@@ -158,35 +158,3 @@ function BooksList() {
 
 export default BooksList;
 
-// [
-//   {
-//     "title": "The Adventures of Oliver Twist" ,
-//     "author": "Charles John Huffam Dickens ",
-//     "src": "https://s1.livelib.ru/boocover/1002954961/o/de5b/Charlz_Dikkens__Priklyucheniya_Olivera_Tvista.jpeg"
-//   },
-//   {
-//     "title": "The Gentle Grafter" ,
-//     "author": "O'Henry William",
-//     "src": "https://www.litmir.me/data/Book/0/538000/538673/BC3_1583426977.jpg"
-//   },
-//   {
-//     "title": "Eugene Onegin" ,
-//     "author": "Alexander Pushkin",
-//     "src": "https://www.litmir.me/data/Book/0/67000/67765/BC3_1490543671.jpg"
-//   },
-//   {
-//     "title": "Kashtanka" ,
-//     "author": "Anton Chekhov",
-//     "src": "https://mishka-knizhka.ru/wp-content/uploads/2020/08/kashtanka3.jpg.webp"
-//   },
-//   {
-//     "title": "Moron" ,
-//     "author": "Fyodor Dostoevsky",
-//     "src": "https://cdn1.ozone.ru/s3/multimedia-7/6008818891.jpg"
-//   },
-//   {
-//     "title": "Alexander III" ,
-//     "author": "Ivan Turgenev",
-//     "src": "https://www.litmir.me/data/Book/0/222000/222179/BC4_1490697840.jpg"
-//   }
-// ]

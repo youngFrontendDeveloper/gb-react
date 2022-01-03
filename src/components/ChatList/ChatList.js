@@ -4,13 +4,14 @@ import { Button, Form, Nav, Row, Col, Container } from "react-bootstrap";
 import ChatItem from "../Chats/ChatItem";
 
 import { selectChatsList } from "../../store/chats/selectors";
-import { onValue, set } from "firebase/database";
-import { chatsRef, getChatRefById } from "../../services/firebase";
+// import { onValue, set } from "firebase/database";
+// import { chatsRef, getChatRefById } from "../../services/firebase";
 import {
-  addChat,
+  // addChat,
   addChatWithFb,
   initChatsTracking,
 } from "../../store/chats/actions";
+// import { initMessagesTracking } from "../../store/messages/action";
 
 import "./ChatList.css";
 
@@ -32,7 +33,7 @@ function ChatList() {
 
   useEffect(() => {
     dispatch(initChatsTracking());
-  }, []);
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -44,6 +45,7 @@ function ChatList() {
     const newId = `chat${Date.now()}`;
     // dispatch(addChat({ name: value, id: newId }));
     dispatch(addChatWithFb({ name: value, id: newId })); // диспатчим новые данные в firebase
+    // dispatch(initMessagesTracking());
     setValue("");
   };
 

@@ -1,5 +1,9 @@
+import { push } from "firebase/database";
+import { getChatMsgsListRefById } from "../../services/firebase";
+
 export const ADD_MESSAGE = "MESSAGES::ADD_MESSAGE";
 export const DELETE_MESSAGE = "MESSAGES::DELETE_MESSAGE";
+export const SET_CHATS = "MESSAGES::SET_CHATS";
 
 export const deleteMessage = (chatId, idToDelete) => ({
   type: DELETE_MESSAGE,
@@ -9,7 +13,7 @@ export const deleteMessage = (chatId, idToDelete) => ({
   },
 });
 
-export const addMessage = (newMessage, chatId) => ({
+export const addMessage = (chatId, newMessage) => ({
   type: ADD_MESSAGE,
   payload: {
     newMessage,
@@ -17,10 +21,16 @@ export const addMessage = (newMessage, chatId) => ({
   },
 });
 
+export const setMessages = (messages) => ({
+  type: SET_CHATS,
+  payload: messages,
+});
+
 let timeout;
 
-export const addMessageWithReply = (message, chatId) => (dispatch) => {
-  dispatch(addMessage(message, chatId));
+export const addMessageWithReply = ( chatId, message) => (dispatch) => {
+  dispatch(addMessage(chatId, message));
+  push(getChatMsgsListRefById(chatId), message);
 
   if (message.author !== "Bot") {
     if (timeout) {
@@ -33,7 +43,21 @@ export const addMessageWithReply = (message, chatId) => (dispatch) => {
         author: "Bot",
         text: "Пожалуйста, относитесь с уважением к другим авторам, не употербляйте матерные выражения",
       };
-      dispatch(addMessage(botMessage, chatId));
+      dispatch(addMessage( chatId, botMessage));
+      push(getChatMsgsListRefById(chatId), botMessage);
     }, 1500);
   }
+
 };
+
+// export const initMessagesTracking = () => (dispatch) => {
+//   onValue(messagesRef, (snapshot) => {
+//     const newMsg = {};
+//     snapshot.forEach((chatMsgsSnap) => {
+//       newMsg[chatMsgsSnap.key] = Object.values(
+//         chatMsgsSnap.val().messageList || {}
+//       );
+//     });
+//     dispatch(setMessages(newMsg));
+//   });
+// };

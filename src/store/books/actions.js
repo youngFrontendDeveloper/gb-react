@@ -25,7 +25,6 @@ export const getBooks = () => async(dispatch) => {
 
   try {
     const response = await fetch( url );
-    console.log( response );
 
     if( !response.ok ) {
       throw new Error( "Some mistake has occurred. We are already working on it" );

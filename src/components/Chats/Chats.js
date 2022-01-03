@@ -5,12 +5,10 @@ import MessagesList from "../MessagesList/MessagesList";
 import FormMess from "../Form/Form";
 import { Navigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectMessages } from "../../store/messages/selectors";
 import { selectChatsList } from "../../store/chats/selectors";
 
-function Chats(msgs) {
+function Chats({msgs}) {
   const { chatId } = useParams();
-  // const messages = useSelector(selectMessages);
   const chats = useSelector(selectChatsList);
 
   const chatName = (chats) => {
@@ -29,9 +27,11 @@ function Chats(msgs) {
         </Col>
         <Col sm={11} md={6}>
           <h2 className="mb-3">
-            Вы находитесь на странице чата {chatName(chats)}
+            Вы находитесь на странице чата <br /> {chatName(chats) }
           </h2>
-          <MessagesList messages={msgs[chatId]} />
+          { msgs && <MessagesList
+            messages={msgs[chatId]}
+          />}
           <FormMess />
         </Col>
       </Row>

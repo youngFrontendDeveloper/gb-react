@@ -28,11 +28,11 @@ function Main() {
       } else {
         dispatch(signOut());
       }
-    }, []);
+    }, );
 
     //удаление подписки на изменение  авторизации
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     onValue(messagesRef, (snapshot) => {
@@ -60,7 +60,7 @@ function Main() {
         <Route
           path="/profile"
           element={
-            <PrivateRoute path={"profile"}>
+            <PrivateRoute>
               <ConnectedProfile />
             </PrivateRoute>
           }
@@ -69,13 +69,12 @@ function Main() {
           <Route
             index
             element={
-              <PrivateRoute path={"chats"}>
+              <PrivateRoute>
                 <ChatList />
               </PrivateRoute>
             }
           />
           <Route
-            exact
             path=":chatId"
             element={
               <PrivateRoute>

@@ -2,7 +2,7 @@ import { CHANGE_NAME, TOGGLE_CHECKBOX, SIGN_IN, SIGN_OUT } from "./actions";
 
 const initialState = {
   checkbox: false,
-  name: "Default name",
+  name: "",
   authed: false,
 };
 

@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { Nav, Container, Navbar } from "react-bootstrap";
 import logo from "./reactjs-icon.svg";
 
+import './Nav.css'
+
 function Navs() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
+    <Navbar bg="light" expand="lg" className="nav">
+      <Container >
         <Navbar.Brand href="/" className="mr-3">
           <img src={logo} alt="Logo" />
         </Navbar.Brand>

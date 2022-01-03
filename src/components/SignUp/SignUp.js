@@ -7,7 +7,7 @@ import "./SignUp.css";
 // import Button from "@restart/ui/esm/Button";
 
 function SignUp() {
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false); // Состояние модального окна
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,11 +15,9 @@ function SignUp() {
     setLoading(true);
     try {
       await signUp(email, pass);
-      setModalShow(false);
+      setModalShow(false); //  Закрываем модальное окно после авторизаци
     } catch (err) {
-      console.log(err);
       setError(err.message);
-      console.log(error);
     } finally {
       setLoading(false);
     }

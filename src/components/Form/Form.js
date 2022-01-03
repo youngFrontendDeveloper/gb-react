@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import { addMessageWithReply } from "../../store/messages/actions";
 import { useParams } from "react-router-dom";
 import "./Form.css";
-import { push } from "firebase/database";
-import { getChatMsgsListRefById } from "../../services/firebase";
 
 function FormMess() {
   const [userName, setUserName] = useState("");
@@ -46,8 +44,7 @@ function FormMess() {
 
   const onAddMessage = useCallback(
     (newMessage) => {
-      dispatch(addMessageWithReply(chatId, newMessage));
-      push(getChatMsgsListRefById(chatId), newMessage);
+      dispatch(addMessageWithReply( chatId, newMessage ));
     },
     [chatId, dispatch]
   );
@@ -81,7 +78,7 @@ function FormMess() {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-5">
+    <Form onSubmit={handleSubmit} className="mb-5 mt-5">
       <Form.Control
         ref={nameRef}
         onChange={changeAuthor}

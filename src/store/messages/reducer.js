@@ -4,16 +4,16 @@ import { ADD_CHAT, DELETE_CHAT } from "../chats/actions";
 const initialMessages = {
   // chat1: [
   //   {
-  //     id: `mes-${ Date.now() }`,
+  //     id: `mes-${Date.now()}`,
   //     author: "Name",
-  //     text: "Message"
-  //   }
+  //     text: "Message",
+  //   },
   // ],
   // chat2: [
   //   {
-  //     id: `mes-${ Date.now() }`,
+  //     id: `mes-${Date.now()}`,
   //     author: "Author",
-  //     text: "this is chat2"
+  //     text: "this is chat2",
   //   },
   // ],
   // chat3: [],
@@ -23,8 +23,9 @@ export const messagesReducer = (state = initialMessages, { type, payload }) => {
   switch (type) {
     case ADD_MESSAGE:
       return {
+
         ...state,
-        [payload.chatId]: [...state[payload.chatId], payload.newMessage],
+        // [payload.chatId]: [...state[payload.chatId], payload.newMessage],
       };
 
     case DELETE_MESSAGE: {

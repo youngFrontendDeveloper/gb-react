@@ -9,10 +9,6 @@ function Message({ message }) {
       </p>
       <p className="m-0 p-2 text-start messages__text">{ message.text }</p>
     </ListGroup.Item>
-    // <div className="mb-2 messages__item">
-    //   <p className="messages__author-name p-2">Автор: {message.author}</p>
-    //   <p className="messages__text p-2">Сообщение: {message.text}</p>
-    // </div>
   );
 }
 

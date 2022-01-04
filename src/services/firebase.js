@@ -10,16 +10,6 @@ import { getDatabase, ref } from "firebase/database";
 
 // Your web app's Firebase configuration
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyArVn0Bdwk-ibxkevYBb8b-MXJtLETm7is",
-//   authDomain: "learning-react-f26c5.firebaseapp.com",
-//   databaseURL: "https://learning-react-f26c5-default-rtdb.firebaseio.com",
-//   projectId: "learning-react-f26c5",
-//   storageBucket: "learning-react-f26c5.appspot.com",
-//   messagingSenderId: "480052411602",
-//   appId: "1:480052411602:web:2a26e8d206e91ea113810b",
-// };
-
 const firebaseConfig = {
   apiKey: "AIzaSyArVn0Bdwk-ibxkevYBb8b-MXJtLETm7is",
   authDomain: "learning-react-f26c5.firebaseapp.com",
@@ -44,24 +34,26 @@ export const logIn = async (email, pass) =>
 
 export const logOut = async () => await signOut(auth);
 
-// Получаем данные из базы данных farebase:
+// Получаем данные из базы данных firebase:
 export const db = getDatabase(app);
 
-// сылка на user из базы данных
+// cсылка на user из базы данных
 export const userRef = ref(db, "user");
 
-// сылка на chats из базы данных
+// cсылка на chats из базы данных
 export const chatsRef = ref(db, "chats");
 
-// сылка на messages из базы данных
+// cсылка на messages из базы данных
 export const messagesRef = ref(db, "messages");
 
-// Доступ к конкретному чату
+// cсылка на конкретный чат
 export const getChatRefById = (id) => ref(db, `chats/${id}`);
 
-// Доступ к сообщениям у конкретного чата
+// cсылка на сообщения у конкретного чата
 export const getChatMsgsListRefById = (chatId) =>
   ref(db, `messages/${chatId}/messageList`);
 
-// Доступ ко всем сообщениям у конкретного чата (для удаления сообщений при удалении чата)
+// cсылка на все сообщения у конкретного чата (для удаления сообщений при удалении чата)
 export const getChatMsgsRefById = (chatId) => ref(db, `messages/${chatId}`);
+
+git add*

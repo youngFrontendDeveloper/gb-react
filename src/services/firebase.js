@@ -56,4 +56,4 @@ export const getChatMsgsListRefById = (chatId) =>
 // cсылка на все сообщения у конкретного чата (для удаления сообщений при удалении чата)
 export const getChatMsgsRefById = (chatId) => ref(db, `messages/${chatId}`);
 
-git add*
+

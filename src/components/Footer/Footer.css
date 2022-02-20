@@ -1,0 +1,8 @@
+.footer_block {
+  flex-shrink: 0;
+  padding: 15px;
+  color: #f8f8f8;
+  /*background: linear-gradient(180deg, #06b2f5, #053f6c);*/
+  border-top: 1px solid #ccc;
+  background-color: rgb(193 213 232);
+}

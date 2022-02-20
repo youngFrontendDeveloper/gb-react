@@ -1,14 +1,20 @@
 import React from "react";
 
 import "./App.css";
-import Message from "./components/Message/Message";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Main from "./components/Main/Main";
 
 function App() {
-  const paragraph = "This is a little paragraph";
+
+  const headerText = "This is a my Header";
+  const footerText = "This is a footer";
+
   return (
     <div className="app">
-      <h1>Hi</h1>
-      <Message text={paragraph}/>
+      <Header header={ headerText }/>
+      <Main/>
+      <Footer footer={ footerText }/>
     </div>
   );
 }

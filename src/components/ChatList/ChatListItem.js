@@ -1,12 +1,14 @@
-import { ListGroup } from "react-bootstrap";
-
-function ChatListItem({ name }) {
-  return (
-    <>
-      <ListGroup.Item>{ name }</ListGroup.Item>
-    </>
-  );
-}
-
-export default ChatListItem;
+// import { ListGroup } from "react-bootstrap";
+// import {  useParams,  } from "react-router-dom";
+//
+// function ChatListItem({ name, }) {
+//   let { path, url } = useParams();
+//   return (
+//     <>
+//       { name }
+//     </>
+//   );
+// }
+//
+// export default ChatListItem;
 

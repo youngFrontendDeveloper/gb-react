@@ -18,3 +18,23 @@
   color: #ffffff !important;
   background-color: rgba(134, 152, 166, 0.66) !important;
 }
+
+.warning {
+  border:2px solid #d50a0a !important;
+  font-weight: bold;
+}
+
+input.warning::placeholder,
+textarea.warning::placeholder{
+  color: #d50a0a !important;
+}
+
+input.warning::-webkit-input-placeholder,
+textarea.warning::-webkit-input-placeholder {
+  color: #d50a0a !important;
+}
+input.warning:-moz-placeholder,
+textarea.warning:-moz-placeholder {
+  color: #d50a0a !important;
+}
+

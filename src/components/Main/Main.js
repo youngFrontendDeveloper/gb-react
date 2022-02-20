@@ -1,66 +1,53 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MessagesList from "../MessagesList/MessagesList";
-import Form from "../Form/Form";
+import FormMess from "../Form/Form";
+import uuid from "react-uuid";
+import ChatList from "../ChatList/ChatList";
+import { ChatListData } from "../../constants/ChatListData";
+import { Col, Container, Row } from "react-bootstrap";
+
 import "./Main.css";
 
 function Main() {
-  const [ userName, setUserName ] = useState( "" );
-  const [ userMessage, setUserMessage ] = useState( "" );
   const [ messages, setMessages ] = useState( [] );
-  const nameRef = useRef( "" );
-  const messageRef = useRef( "" );
 
+  const addMessageInArr = useCallback( (newMessage) => {
+    setMessages( (prevMessages) => [ ...prevMessages, newMessage ] );
+  }, [] );
 
-  const changeAuthor = (event) => {
-    setUserName( event.target.value );
-  };
-
-  const changeMessage = (event) => {
-    setUserMessage( event.target.value );
-  };
-
-  const addMessageInArr = (event) => {
-    event.preventDefault();
-    setMessages( [ ...messages, {
-      name: userName,
-      message: userMessage
-    } ] );
-
-    nameRef.current.value = "";
-    messageRef.current.value = "";
-    nameRef.current.focus();
-  };
-
-  const addMessageFromBot = () => {
-    let itemArr = messages[ messages.length - 1 ];
-    if( itemArr.name !== "Bot" && messages.length !== 0 ) {
-      setMessages( [ ...messages, {
-        name: "Bot",
-        message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не употребляйте матерных и грубых выражений"
-      } ] );
-    }
-  };
 
   useEffect( () => {
-     setTimeout(()=>{
-       if( messages.length !== 0 ) {
-         addMessageFromBot();
-       }
-     }, 1500)
+    if( messages.length && messages[ messages.length - 1 ].name !== "Bot" ) {
+      const timeout = setTimeout( () => {
+          addMessageInArr( {
+            id: uuid(),
+            name: "Bot",
+            message: "Пожалуйста, соблюдайте правила при написании сообщений: относитесь к другим авторам с уважением, не употребляйте матерных и грубых выражений"
+          } );
+        }, 1000
+      );
+      return () => clearTimeout( timeout );
     }
-  );
+  }, [ addMessageInArr, messages ] );
 
   return (
     <main className="main_block">
-      <h1>This is a Main page</h1>
-      <div className="messages">
-        <MessagesList messages={ messages }/>
-      </div>
-      <Form changeAuthor={ changeAuthor }
-            changeMessage={ changeMessage }
-            addMessageInArr={ addMessageInArr }
-            nameRef={ nameRef }
-            messageRef={ messageRef }/>
+      <Container>
+        <Row className="mb-4">
+          <h1>This is a Main page</h1>
+        </Row>
+        <Row className="mb-4">
+          <Col className="mb-3 mx-auto" xs={ 10 } md={ 2 } lg={ 3 }>
+            <ChatList data={ ChatListData }/>
+          </Col>
+          <Col className="mx-auto" xs={ 10 } md={ 9 } lg={ 8 }>
+            <MessagesList messages={ messages }/>
+            <FormMess
+              sendMessage={ addMessageInArr }
+            />
+          </Col>
+        </Row>
+      </Container>
     </main>
   );
 }

@@ -1,38 +1,38 @@
-// import React, { useCallback, useEffect, useRef, useState } from "react";
-// import { Container } from "react-bootstrap";
-// import FormMess from "../Form/Form";
-// import MessagesList from "../MessagesList/MessagesList";
-// import { Route, Routes } from "react-router-dom";
-//
-// function ChatItem({data, }) {
-//
-//   const [ messages, setMessages ] = useState( []);
-//   const isFirstRender = useRef( true );
-//
-//   const addMessageInArr = useCallback(
-//     (newMessage) => {
-//       setMessages( (prevMessages) => ( [
-//         ...prevMessages, newMessage]))
-//
-//     }, [ ] );
-//
-//   useEffect( () => {
-//     isFirstRender.current = false;
-//   }, [] );
-//   return (
-//   <Container>
-//     <Routes>
-//       {data.map( (item, index) =>(
-//       <Route exact
-//     key={index}
-//         path={item.path}
-//           element={ <MessagesList index={index} messages={messages}  addMessageInArr={addMessageInArr}/> } />
-//        ))}
-//     </Routes>
-//     <FormMess sendMessage={ addMessageInArr } />
-//
-//   </Container>
-//   );
-// }
-//
-// export default ChatItem;
+import { Button, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {  deleteChatWithFb } from "../../store/chats/actions";
+
+import "./СhatItem.css";
+
+const ChatItem = ({ chat }) => {
+  const dispatch = useDispatch();
+
+  // Удаление чата без Firebase
+  // const onDeleteChat = () => {
+  //   dispatch(deleteChat(chat.id));
+  // };
+
+  // Удаление чата с Firebase
+  const onDeleteChat = () => {
+    dispatch(deleteChatWithFb(chat.id));
+  };
+
+  return (
+    <>
+      <Nav.Link as={Link} to={`/chats/${chat.id}`}  eventKey={`/chats/${chat.id}`}>
+        {chat.name}
+      </Nav.Link>
+      <Button
+        onClick={onDeleteChat}
+        variant="outline-danger"
+        size="sm"
+        className="btn__delete"
+      >
+        Delete
+      </Button>
+    </>
+  );
+};
+
+export default ChatItem;

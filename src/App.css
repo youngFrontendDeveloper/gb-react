@@ -6,7 +6,6 @@
   color: darkslategray;
 }
 
-
 .warning {
   border:2px solid #d50a0a !important;
   font-weight: bold;
@@ -24,4 +23,22 @@ textarea.warning::-webkit-input-placeholder {
 input.warning:-moz-placeholder,
 textarea.warning:-moz-placeholder {
   color: #d50a0a !important;
+}
+
+.button {
+  color: #706f6f !important;
+  background-color: rgba(193, 213, 232, 0.38) !important;
+  border: none !important;
+  border-radius: 4px;
+}
+
+.button:hover {
+  color: #ffffff !important;
+  background-color: rgba(134, 152, 166, 0.66) !important;
+}
+
+.page__title {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  color: rgb(127 165 202);
 }

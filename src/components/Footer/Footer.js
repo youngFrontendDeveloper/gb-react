@@ -1,9 +1,9 @@
 import "./Footer.css";
 
-function Footer({ footer }) {
+function Footer() {
   return (
     <footer className="footer_block">
-      <h2>{ footer }</h2>
+      <p>&copy; Все права защищены</p>
     </footer>
   );
 }

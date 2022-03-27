@@ -1,0 +1,1 @@
+export const url = "http://myjson.dit.upm.es/api/bins/f6dr";

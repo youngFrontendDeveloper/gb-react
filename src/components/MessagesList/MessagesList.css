@@ -4,6 +4,7 @@
 }
 
 .messages__author-name {
+  margin-bottom: 0!important;
   color: #706f6f;
 }
 

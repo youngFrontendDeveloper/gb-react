@@ -1,41 +1,40 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import ChatList from "../ChatList/ChatList";
-import { ChatListData } from "../../constants/ChatListData";
 import MessagesList from "../MessagesList/MessagesList";
 import FormMess from "../Form/Form";
-import { Route, Routes, useParams } from "react-router-dom";
-import ChatItem from "./ChatItem";
+import { Navigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectChatsList } from "../../store/chats/selectors";
 
+function Chats({msgs}) {
+  const { chatId } = useParams();
+  const chats = useSelector(selectChatsList);
 
+  const chatName = (chats) => {
+    return chats.find((chat) => chat.id === chatId).name;
+  };
 
-function Chats() {
+  if (!msgs[chatId]) {
+    return <Navigate replace to="/chats" />;
+  }
 
-  const [ messages, setMessages ] = useState( []);
-  const isFirstRender = useRef( true );
-
-  const addMessageInArr = useCallback(
-    (newMessage) => {
-      setMessages( (prevMessages) => ( [
-        ...prevMessages, newMessage]))
-
-    }, [ ] );
-
-  useEffect( () => {
-    isFirstRender.current = false;
-  }, [] );
   return (
     <Container>
-      <Routes>
-        {ChatListData.map( (item, index) =>(
-          <Route exact
-                 key={index}
-                 path={item.path}
-                 element={ <MessagesList index={index} messages={messages}  addMessageInArr={addMessageInArr}/> } />
-        ))}
-      </Routes>
-      <FormMess sendMessage={ addMessageInArr } />
-
+      <Row>
+        <Col sm={11} md={6}>
+          <ChatList />
+        </Col>
+        <Col sm={11} md={6}>
+          <h2 className="mb-3">
+            Вы находитесь на странице чата <br /> {chatName(chats) }
+          </h2>
+          { msgs && <MessagesList
+            messages={msgs[chatId]}
+          />}
+          <FormMess />
+        </Col>
+      </Row>
     </Container>
   );
 }

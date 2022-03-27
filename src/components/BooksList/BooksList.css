@@ -1,0 +1,29 @@
+.books {
+  width: 100%
+}
+
+.book {
+  flex-wrap: wrap;
+  width: 250px;
+  max-width: 300px;
+  min-height: 450px;
+}
+
+.books__author {
+  display: block;
+  width: 100%;
+}
+
+.book__title {
+  display: block;
+}
+
+.book__img-wrapper {
+  width: 70% !important;
+  height: 60%;
+  overflow: hidden;
+}
+.book__img {
+  width: 100%;
+  height: auto;
+}
